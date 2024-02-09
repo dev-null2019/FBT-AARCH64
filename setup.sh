@@ -91,12 +91,17 @@ then
 	echo "#########################################"
 	echo "##### APT Install Required Packages #####"
 	echo "#########################################"
-	sudo apt -y install python3 python3-dev python3-pip nanopb libprotobuf23 libprotoc23 protobuf-compiler
+	sudo apt -y install python3 python3-dev python3-pip nanopb protobuf-compiler
+ 	echo "###################################################"
+	echo "##### Create Python venv and activate it#####"
+	echo "###################################################"
+ 	python3 -m venv ./venv
+  	source ./venv/bin/activate
 	echo "###################################################"
 	echo "##### Python PIP Install of Required Packages #####"
 	echo "###################################################"
 	pip install --upgrade pip
-	pip install nanopb==0.4.7 protobuf==3.20.3 heatshrink2==0.12.0 scons==4.5.2 ansi==0.3.6 colorlog==6.7.0 pillow==9.4.0
+	pip install nanopb==0.4.7 protobuf grpcio-tools heatshrink2==0.12.0 scons==4.5.2 ansi==0.3.6 colorlog==6.7.0 pillow==9.4.0
 	pip install pyelftools
  	echo "########################################################################################"
 	echo "##### Downloading GCC Toolchain specific for FlipperZero Firmware as of April 2023 #####"
@@ -128,6 +133,7 @@ then
 	sudo ln -s /usr/share/xpack-arm-none-eabi-gcc-10.3.1-2.1/bin/arm-none-eabi-gdb /usr/bin/arm-none-eabi-gdb
 	sudo ln -s /usr/share/xpack-arm-none-eabi-gcc-10.3.1-2.1/bin/arm-none-eabi-gdb-add-index /usr/bin/arm-none-eabi-gdb-add-index
 	sudo ln -s /usr/share/xpack-arm-none-eabi-gcc-10.3.1-2.1/bin/arm-none-eabi-gdb-add-index-py3 /usr/bin/arm-none-eabi-gdb-add-index-py3
+	sudo ln -s /usr/share/xpack-arm-none-eabi-gcc-10.3.1-2.1/bin/arm-none-eabi-gdb-add-index-py3 /usr/bin/arm-none-eabi-gdb-add-index-py
 	sudo ln -s /usr/share/xpack-arm-none-eabi-gcc-10.3.1-2.1/bin/arm-none-eabi-gdb-py3 /usr/bin/arm-none-eabi-gdb-py3
 	sudo ln -s /usr/share/xpack-arm-none-eabi-gcc-10.3.1-2.1/bin/arm-none-eabi-gprof /usr/bin/arm-none-eabi-gprof
 	sudo ln -s /usr/share/xpack-arm-none-eabi-gcc-10.3.1-2.1/bin/arm-none-eabi-ld /usr/bin/arm-none-eabi-ld
@@ -141,8 +147,9 @@ then
 	sudo ln -s /usr/share/xpack-arm-none-eabi-gcc-10.3.1-2.1/bin/arm-none-eabi-size /usr/bin/arm-none-eabi-size
 	sudo ln -s /usr/share/xpack-arm-none-eabi-gcc-10.3.1-2.1/bin/arm-none-eabi-strings /usr/bin/arm-none-eabi-strings
 	sudo ln -s /usr/share/xpack-arm-none-eabi-gcc-10.3.1-2.1/bin/arm-none-eabi-strip /usr/bin/arm-none-eabi-strip
+ 	deactivate
 	echo "#########################################################################"
-	echo "##### Done. Clone FlipperZero Firmware and Run FBT with FBT_NOENV=1 #####"
+	echo "##### Done. Clone FlipperZero Firmware, activate the virtual environment and Run FBT with FBT_NOENV=1 #####"
 	echo "#########################################################################"
 else
 	echo "This script is only for 64-bit systems (AARCH64)."
