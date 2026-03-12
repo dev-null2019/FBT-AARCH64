@@ -101,7 +101,7 @@ then
 	echo "##### Python PIP Install of Required Packages #####"
 	echo "###################################################"
 	pip install --upgrade pip
-	pip install nanopb==0.4.7 protobuf grpcio-tools heatshrink2==0.12.0 scons==4.5.2 ansi==0.3.6 colorlog==6.7.0 pillow==9.4.0
+	pip install nanopb==0.4.7 protobuf grpcio-tools heatshrink2 scons==4.5.2 ansi==0.3.6 colorlog==6.7.0 pillow
 	pip install pyelftools
  	pip install oslex
   	pip install cxxheaderparser
